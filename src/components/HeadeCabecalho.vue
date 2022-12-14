@@ -26,6 +26,9 @@ export default {
     go() {
       this.$router.push(`/filmes_por_genero/${this.genero}`);
     },
+    getProfileUrl(avatar_path) {
+      return `https://image.tmdb.org/t/p/w500${avatar_path}`;
+    },
   },
 };
 </script>
@@ -53,11 +56,16 @@ export default {
           ><RouterLink to="/lancamento">Lançamentos</RouterLink></span
         >
       </div>
-      <div>
+      <div v-if="userData.avatar">
         <RouterLink to="/minha-conta"
-          ><span class="cabecalho-span">{{
-            userData.username
-          }}</span></RouterLink
+          ><span class="cabecalho-span">
+           <img
+          class="poster-profile-header"
+          :src="getProfileUrl(userData.avatar.tmdb.avatar_path)"
+        
+    
+        /> 
+          </span></RouterLink
         >
         <button>
           <RouterLink to="/pesquisa" class="button-pesquisar"
